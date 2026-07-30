@@ -93,8 +93,4 @@ category:"Sandwich"
 name:"Euro Sandwich",
 price:750,
 category:"Sandwich"
-},
-
-{
-name:"Alfredo Pasta",
-price:
+}
