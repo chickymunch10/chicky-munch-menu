@@ -27,9 +27,9 @@ category:"Burgers"
 name:"CM Special Burger",
 price:695,
 category:"Burgers"
-},
+}
 
-{
+  {,
 name:"Zinger Jumbo Burger",
 price:675,
 category:"Burgers"
@@ -94,3 +94,4 @@ name:"Euro Sandwich",
 price:750,
 category:"Sandwich"
 }
+];
