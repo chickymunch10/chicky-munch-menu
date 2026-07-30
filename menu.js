@@ -1,5 +1,4 @@
 const menu = [
-
 {
 name:"Zinger Burger",
 price:375,
