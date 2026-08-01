@@ -4,22 +4,46 @@ const total = document.getElementById("total");
 
 let cart = [];
 
-let selectedProduct = null;
-
 
 // ================= SHOW PRODUCTS =================
 
 function renderProducts(){
 
-products.innerHTML = "";
+products.innerHTML="";
 
 
 menu.forEach((item,index)=>{
 
+createCard(item,index);
 
-let priceText = item.price 
-? `Rs ${item.price}`
-: "Select Size";
+});
+
+}
+
+
+
+// ================= CREATE CARD =================
+
+function createCard(item,index){
+
+
+let priceText;
+
+
+if(item.price){
+
+priceText = `Rs ${item.price}`;
+
+}
+
+else{
+
+let firstPrice = Object.values(item.sizes)[0];
+
+priceText = `Starting Rs ${firstPrice}`;
+
+}
+
 
 
 products.innerHTML += `
@@ -42,22 +66,17 @@ Add To Cart
 
 `;
 
-});
-
-
 }
 
 
 
-// ================= CATEGORY =================
+// ================= CATEGORY FILTER =================
 
 function showCategory(category){
 
 
 products.innerHTML="";
 
-
-// All
 
 if(category==="All"){
 
@@ -69,14 +88,14 @@ return;
 
 
 
-// Deals special
-
 if(category==="Deals"){
 
-products.innerHTML += `<h2>ZINGER DEALS</h2>`;
+
+products.innerHTML += "<h2>ZINGER DEALS</h2>";
 
 
 menu.forEach((item,index)=>{
+
 
 if(
 item.category==="Deals" &&
@@ -87,14 +106,16 @@ createCard(item,index);
 
 }
 
+
 });
 
 
 
-products.innerHTML += `<h2>PIZZA DEALS</h2>`;
+products.innerHTML += "<h2>PIZZA DEALS</h2>";
 
 
 menu.forEach((item,index)=>{
+
 
 if(
 item.category==="Deals" &&
@@ -104,6 +125,7 @@ item.name.includes("Pizza")
 createCard(item,index);
 
 }
+
 
 });
 
@@ -129,47 +151,12 @@ createCard(item,index);
 
 }
 
-
-
-// ================= CARD =================
-
-function createCard(item,index){
-
-
-let price = item.price 
-? `Rs ${item.price}`
-: "Select Size";
-
-
-products.innerHTML += `
-
-<div class="card">
-
-<h3>${item.name}</h3>
-
-<p class="price">
-${price}
-</p>
-
-
-<button onclick="selectProduct(${index})">
-Add To Cart
-</button>
-
-</div>
-
-`;
-
-}
-
 // ================= SIZE SELECT =================
 
 function selectProduct(index){
 
 const product = menu[index];
 
-
-// اگر sizes موجود ہیں تو size select کروائیں
 
 if(product.sizes){
 
@@ -178,13 +165,21 @@ let sizes = Object.keys(product.sizes);
 
 
 let choice = prompt(
+
 "Select Size:\n\n" +
-sizes.map((size,i)=> `${i+1}. ${size} - Rs ${product.sizes[size]}`).join("\n")
+
+sizes.map((size,i)=>{
+
+return `${i+1}. ${size} - Rs ${product.sizes[size]}`;
+
+}).join("\n")
+
 );
 
 
 
 let selectedSize = sizes[choice-1];
+
 
 
 if(!selectedSize){
@@ -195,7 +190,12 @@ return;
 
 
 
-addSizeToCart(product, selectedSize, product.sizes[selectedSize]);
+addSizeToCart(
+product,
+selectedSize,
+product.sizes[selectedSize]
+);
+
 
 
 }
@@ -214,25 +214,27 @@ addNormalToCart(product);
 
 
 
-
 // ================= ADD SIZE ITEM =================
+
 
 function addSizeToCart(product,size,price){
 
 
-let cartName = `${product.name} (${size})`;
+let name = `${product.name} (${size})`;
 
 
 
 let exist = cart.find(
-item=>item.name===cartName
+item=>item.name===name
 );
 
 
 
 if(exist){
 
+
 exist.qty++;
+
 
 }
 
@@ -241,7 +243,7 @@ else{
 
 cart.push({
 
-name:cartName,
+name:name,
 
 price:price,
 
@@ -262,9 +264,12 @@ renderCart();
 
 
 
-// ================= NORMAL ITEM =================
+
+// ================= ADD NORMAL ITEM =================
+
 
 function addNormalToCart(product){
+
 
 
 let exist = cart.find(
@@ -275,7 +280,9 @@ item=>item.name===product.name
 
 if(exist){
 
+
 exist.qty++;
+
 
 }
 
@@ -311,11 +318,15 @@ renderCart();
 
 function plusItem(index){
 
+
 cart[index].qty++;
+
 
 renderCart();
 
+
 }
+
 
 
 
@@ -325,6 +336,7 @@ function minusItem(index){
 cart[index].qty--;
 
 
+
 if(cart[index].qty<=0){
 
 cart.splice(index,1);
@@ -332,11 +344,11 @@ cart.splice(index,1);
 }
 
 
+
 renderCart();
 
 
 }
-
 
 
 
@@ -367,6 +379,7 @@ cartItems.innerHTML += `
 <div style="
 display:flex;
 justify-content:space-between;
+align-items:center;
 background:#2b2b2b;
 padding:10px;
 border-radius:10px;
@@ -380,7 +393,6 @@ margin-bottom:10px;">
 Rs ${item.price}
 
 </div>
-
 
 
 <div>
@@ -405,7 +417,6 @@ ${item.qty}
 
 </div>
 
-
 `;
 
 
@@ -423,7 +434,10 @@ cart.reduce((t,i)=>t+i.qty,0);
 
 
 
-}// ================= WHATSAPP ORDER =================
+}
+
+
+// ================= WHATSAPP ORDER =================
 
 document.getElementById("order")
 .addEventListener("click",function(){
@@ -511,11 +525,15 @@ window.open(
 
 // ================= TOTAL =================
 
+
 function sumCart(){
 
 return cart.reduce(
-(sum,item)=>sum+(item.price*item.qty),
+
+(sum,item)=>sum + (item.price * item.qty),
+
 0
+
 );
 
 }
@@ -523,7 +541,8 @@ return cart.reduce(
 
 
 
-// ================= CART BUTTON =================
+
+// ================= CART OPEN CLOSE =================
 
 
 function toggleCart(){
@@ -556,6 +575,7 @@ cartBox.style.display="block";
 
 
 
+
 document.getElementById("cartBtn")
 .addEventListener("click",function(){
 
@@ -566,11 +586,13 @@ toggleCart();
 
 
 
+
 document.getElementById("cart").style.display="none";
 
 
 
 
 // ================= PAGE LOAD =================
+
 
 renderProducts();
