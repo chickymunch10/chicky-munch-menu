@@ -4,29 +4,32 @@ const total = document.getElementById("total");
 
 let cart = [];
 
-function renderProducts() {
-    products.innerHTML = "";
+function renderProducts(){
 
-    menu.forEach((item, index) => {
+products.innerHTML="";
 
-        const card = document.createElement("div");
-        card.className = "card";
+menu.forEach((item,index)=>{
 
-        card.innerHTML = `
-            <h3>${item.name}</h3>
-            <p class="price">Rs ${item.price}</p>
-            <button>Add To Cart</button>
-        `;
+const qty=cart.filter(x=>x.name===item.name).length;
 
-        const btn = card.querySelector("button");
+products.innerHTML+=`
+<div class="card">
 
-        btn.addEventListener("click", function () {
-            addToCart(index);
-        });
+${qty>0?`<div class="qty">${qty}</div>`:""}
 
-        products.appendChild(card);
+<h3>${item.name}</h3>
 
-    });
+<p class="price">Rs ${item.price}</p>
+
+<button onclick="addToCart(${index})">
+Add To Cart
+</button>
+
+</div>
+`;
+
+});
+
 }
 
 function addToCart(index) {
@@ -57,6 +60,8 @@ function renderCart() {
 
     total.textContent = sum;
 
+    document.getElementById("cartCount").textContent = cart.length;
+renderProducts();
 }
 
 document.getElementById("order").addEventListener("click", function () {
@@ -97,3 +102,16 @@ function sumCart() {
 }
 
 renderProducts();
+document.getElementById("cartBtn").onclick = function () {
+
+    const cartBox = document.getElementById("cart");
+
+    if (cartBox.style.display === "block") {
+        cartBox.style.display = "none";
+    } else {
+        cartBox.style.display = "block";
+    }
+
+};
+
+document.getElementById("cart").style.display = "none";
