@@ -9,7 +9,7 @@ let cart = [];
 
 function renderProducts(){
 
-products.innerHTML="";
+products.innerHTML = "";
 
 
 menu.forEach((item,index)=>{
@@ -27,20 +27,17 @@ createCard(item,index);
 function createCard(item,index){
 
 
-let priceText;
+let priceText = "";
 
 
-if(item.price){
+if(item.sizes){
 
-priceText = `Rs ${item.price}`;
+priceText = "Select Size";
 
 }
-
 else{
 
-let firstPrice = Object.values(item.sizes)[0];
-
-priceText = `Starting Rs ${firstPrice}`;
+priceText = `Rs ${item.price}`;
 
 }
 
@@ -70,15 +67,17 @@ Add To Cart
 
 
 
+
 // ================= CATEGORY FILTER =================
 
 function showCategory(category){
 
 
-products.innerHTML="";
+products.innerHTML = "";
 
 
-if(category==="All"){
+
+if(category === "All"){
 
 renderProducts();
 
@@ -88,10 +87,14 @@ return;
 
 
 
-if(category==="Deals"){
+
+// ================= DEALS SEPARATE =================
 
 
-products.innerHTML += "<h2>ZINGER DEALS</h2>";
+if(category === "Deals"){
+
+
+products.innerHTML += `<h2>ZINGER DEALS</h2>`;
 
 
 menu.forEach((item,index)=>{
@@ -111,7 +114,7 @@ createCard(item,index);
 
 
 
-products.innerHTML += "<h2>PIZZA DEALS</h2>";
+products.innerHTML += `<h2>PIZZA DEALS</h2>`;
 
 
 menu.forEach((item,index)=>{
@@ -136,12 +139,15 @@ return;
 
 
 
+
 menu.forEach((item,index)=>{
 
 
-if(item.category===category){
+if(item.category === category){
+
 
 createCard(item,index);
+
 
 }
 
@@ -150,12 +156,12 @@ createCard(item,index);
 
 
 }
-
 // ================= SIZE SELECT =================
 
 function selectProduct(index){
 
 const product = menu[index];
+
 
 
 if(product.sizes){
@@ -164,21 +170,22 @@ if(product.sizes){
 let sizes = Object.keys(product.sizes);
 
 
+
 let choice = prompt(
 
 "Select Size:\n\n" +
 
-sizes.map((size,i)=>{
+sizes.map((size,i)=>
 
-return `${i+1}. ${size} - Rs ${product.sizes[size]}`;
+`${i+1}. ${size} - Rs ${product.sizes[size]}`
 
-}).join("\n")
+).join("\n")
 
 );
 
 
 
-let selectedSize = sizes[choice-1];
+let selectedSize = sizes[choice - 1];
 
 
 
@@ -220,12 +227,14 @@ addNormalToCart(product);
 function addSizeToCart(product,size,price){
 
 
-let name = `${product.name} (${size})`;
+let itemName = `${product.name} (${size})`;
 
 
 
 let exist = cart.find(
-item=>item.name===name
+
+item => item.name === itemName
+
 );
 
 
@@ -243,7 +252,7 @@ else{
 
 cart.push({
 
-name:name,
+name:itemName,
 
 price:price,
 
@@ -273,7 +282,9 @@ function addNormalToCart(product){
 
 
 let exist = cart.find(
-item=>item.name===product.name
+
+item => item.name === product.name
+
 );
 
 
@@ -313,7 +324,7 @@ renderCart();
 
 
 
-// ================= PLUS MINUS =================
+// ================= PLUS ITEM =================
 
 
 function plusItem(index){
@@ -330,6 +341,10 @@ renderCart();
 
 
 
+
+// ================= MINUS ITEM =================
+
+
 function minusItem(index){
 
 
@@ -337,9 +352,11 @@ cart[index].qty--;
 
 
 
-if(cart[index].qty<=0){
+if(cart[index].qty <= 0){
+
 
 cart.splice(index,1);
+
 
 }
 
@@ -350,21 +367,13 @@ renderCart();
 
 }
 
-
-
-
-
 // ================= CART DISPLAY =================
-
 
 function renderCart(){
 
+cartItems.innerHTML = "";
 
-cartItems.innerHTML="";
-
-
-let sum=0;
-
+let sum = 0;
 
 
 cart.forEach((item,index)=>{
@@ -393,6 +402,7 @@ margin-bottom:10px;">
 Rs ${item.price}
 
 </div>
+
 
 
 <div>
@@ -425,7 +435,7 @@ ${item.qty}
 
 
 
-total.textContent=sum;
+total.textContent = sum;
 
 
 
@@ -433,14 +443,18 @@ document.getElementById("cartCount").textContent =
 cart.reduce((t,i)=>t+i.qty,0);
 
 
-
 }
+
+
+
 
 
 // ================= WHATSAPP ORDER =================
 
+
 document.getElementById("order")
 .addEventListener("click",function(){
+
 
 
 if(cart.length===0){
@@ -528,6 +542,7 @@ window.open(
 
 function sumCart(){
 
+
 return cart.reduce(
 
 (sum,item)=>sum + (item.price * item.qty),
@@ -536,27 +551,27 @@ return cart.reduce(
 
 );
 
+
 }
 
 
 
 
 
-// ================= CART OPEN CLOSE =================
+// ================= CART BUTTON =================
 
 
 function toggleCart(){
 
 
-const cartBox =
-document.getElementById("cart");
+const cartBox = document.getElementById("cart");
 
 
 
-if(cartBox.style.display==="block"){
+if(cartBox.style.display === "block"){
 
 
-cartBox.style.display="none";
+cartBox.style.display = "none";
 
 
 }
@@ -564,7 +579,7 @@ cartBox.style.display="none";
 else{
 
 
-cartBox.style.display="block";
+cartBox.style.display = "block";
 
 
 }
@@ -579,7 +594,9 @@ cartBox.style.display="block";
 document.getElementById("cartBtn")
 .addEventListener("click",function(){
 
+
 toggleCart();
+
 
 });
 
@@ -588,6 +605,7 @@ toggleCart();
 
 
 document.getElementById("cart").style.display="none";
+
 
 
 
