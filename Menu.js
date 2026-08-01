@@ -202,30 +202,30 @@ category:"Platters"
 },
 
 
-/* ================= ZINGER DEALS ================= */
+/* ================= DEALS ================= */
 
 {
 name:"Deal 1 - 1 Zinger Fries & Drink",
 price:550,
-category:"Zinger Deals"
+category:"Deals"
 },
 
 {
 name:"Deal 2 - 2 Zinger Fries & Half Ltr Drink",
 price:1050,
-category:"Zinger Deals"
+category:"Deals"
 },
 
 {
 name:"Deal 3 - 3 Zinger 4 Wings & 1 Ltr Drink",
 price:1550,
-category:"Zinger Deals"
+category:"Deals"
 },
 
 {
 name:"Deal 4 - 5 Zinger Fries & 1 Ltr Drink",
 price:2050,
-category:"Zinger Deals"
+category:"Deals"
 },
 
 
