@@ -4,15 +4,22 @@ const total = document.getElementById("total");
 
 let cart = [];
 
+let selectedProduct = null;
 
-// ================= SHOW ALL PRODUCTS =================
+
+// ================= SHOW PRODUCTS =================
 
 function renderProducts(){
 
-products.innerHTML="";
+products.innerHTML = "";
 
 
 menu.forEach((item,index)=>{
+
+
+let priceText = item.price 
+? `Rs ${item.price}`
+: "Select Size";
 
 
 products.innerHTML += `
@@ -22,11 +29,11 @@ products.innerHTML += `
 <h3>${item.name}</h3>
 
 <p class="price">
-Rs ${item.price}
+${priceText}
 </p>
 
 
-<button onclick="addToCart(${index})">
+<button onclick="selectProduct(${index})">
 Add To Cart
 </button>
 
@@ -42,8 +49,7 @@ Add To Cart
 
 
 
-
-// ================= CATEGORY FILTER =================
+// ================= CATEGORY =================
 
 function showCategory(category){
 
@@ -51,128 +57,61 @@ function showCategory(category){
 products.innerHTML="";
 
 
-
-// ALL
+// All
 
 if(category==="All"){
 
 renderProducts();
+
 return;
 
 }
 
 
 
-
-// ================= DEALS SPECIAL =================
+// Deals special
 
 if(category==="Deals"){
 
-
-
-products.innerHTML += `
-
-<h2 style="width:100%;">
-ZINGER DEALS
-</h2>
-
-`;
-
+products.innerHTML += `<h2>ZINGER DEALS</h2>`;
 
 
 menu.forEach((item,index)=>{
 
-
 if(
 item.category==="Deals" &&
-item.name.toLowerCase().includes("zinger")
+item.name.includes("Zinger")
 ){
 
-
-products.innerHTML += `
-
-<div class="card">
-
-<h3>${item.name}</h3>
-
-<p class="price">
-Rs ${item.price}
-</p>
-
-
-<button onclick="addToCart(${index})">
-Add To Cart
-</button>
-
-
-</div>
-
-`;
-
+createCard(item,index);
 
 }
-
 
 });
 
 
 
-
-
-products.innerHTML += `
-
-<h2 style="width:100%;">
-PIZZA DEALS
-</h2>
-
-`;
-
+products.innerHTML += `<h2>PIZZA DEALS</h2>`;
 
 
 menu.forEach((item,index)=>{
 
-
 if(
 item.category==="Deals" &&
-item.name.toLowerCase().includes("pizza")
+item.name.includes("Pizza")
 ){
 
-
-products.innerHTML += `
-
-<div class="card">
-
-<h3>${item.name}</h3>
-
-<p class="price">
-Rs ${item.price}
-</p>
-
-
-<button onclick="addToCart(${index})">
-Add To Cart
-</button>
-
-
-</div>
-
-`;
+createCard(item,index);
 
 }
 
-
 });
-
 
 
 return;
 
 }
 
-
-
-
-// NORMAL CATEGORY
 
 
 menu.forEach((item,index)=>{
@@ -180,27 +119,7 @@ menu.forEach((item,index)=>{
 
 if(item.category===category){
 
-
-products.innerHTML += `
-
-<div class="card">
-
-<h3>${item.name}</h3>
-
-<p class="price">
-Rs ${item.price}
-</p>
-
-
-<button onclick="addToCart(${index})">
-Add To Cart
-</button>
-
-
-</div>
-
-`;
-
+createCard(item,index);
 
 }
 
@@ -212,21 +131,101 @@ Add To Cart
 
 
 
+// ================= CARD =================
+
+function createCard(item,index){
+
+
+let price = item.price 
+? `Rs ${item.price}`
+: "Select Size";
+
+
+products.innerHTML += `
+
+<div class="card">
+
+<h3>${item.name}</h3>
+
+<p class="price">
+${price}
+</p>
+
+
+<button onclick="selectProduct(${index})">
+Add To Cart
+</button>
+
+</div>
+
+`;
+
+}
+
+// ================= SIZE SELECT =================
+
+function selectProduct(index){
+
+const product = menu[index];
+
+
+// اگر sizes موجود ہیں تو size select کروائیں
+
+if(product.sizes){
+
+
+let sizes = Object.keys(product.sizes);
+
+
+let choice = prompt(
+"Select Size:\n\n" +
+sizes.map((size,i)=> `${i+1}. ${size} - Rs ${product.sizes[size]}`).join("\n")
+);
+
+
+
+let selectedSize = sizes[choice-1];
+
+
+if(!selectedSize){
+
+return;
+
+}
+
+
+
+addSizeToCart(product, selectedSize, product.sizes[selectedSize]);
+
+
+}
+
+else{
+
+
+addNormalToCart(product);
+
+
+}
+
+
+}
 
 
 
 
-// ================= CART =================
+
+// ================= ADD SIZE ITEM =================
+
+function addSizeToCart(product,size,price){
 
 
-function addToCart(index){
+let cartName = `${product.name} (${size})`;
 
 
-const product=menu[index];
 
-
-const exist=cart.find(
-item=>item.name===product.name
+let exist = cart.find(
+item=>item.name===cartName
 );
 
 
@@ -235,12 +234,16 @@ if(exist){
 
 exist.qty++;
 
-}else{
+}
+
+else{
 
 
 cart.push({
 
-...product,
+name:cartName,
+
+price:price,
 
 qty:1
 
@@ -253,9 +256,57 @@ qty:1
 
 renderCart();
 
+
 }
 
 
+
+
+// ================= NORMAL ITEM =================
+
+function addNormalToCart(product){
+
+
+let exist = cart.find(
+item=>item.name===product.name
+);
+
+
+
+if(exist){
+
+exist.qty++;
+
+}
+
+else{
+
+
+cart.push({
+
+name:product.name,
+
+price:product.price,
+
+qty:1
+
+});
+
+
+}
+
+
+
+renderCart();
+
+
+}
+
+
+
+
+
+// ================= PLUS MINUS =================
 
 
 function plusItem(index){
@@ -290,6 +341,10 @@ renderCart();
 
 
 
+
+// ================= CART DISPLAY =================
+
+
 function renderCart(){
 
 
@@ -303,7 +358,7 @@ let sum=0;
 cart.forEach((item,index)=>{
 
 
-sum += item.price*item.qty;
+sum += item.price * item.qty;
 
 
 
@@ -312,7 +367,6 @@ cartItems.innerHTML += `
 <div style="
 display:flex;
 justify-content:space-between;
-align-items:center;
 background:#2b2b2b;
 padding:10px;
 border-radius:10px;
@@ -351,7 +405,9 @@ ${item.qty}
 
 </div>
 
+
 `;
+
 
 
 });
@@ -361,21 +417,13 @@ ${item.qty}
 total.textContent=sum;
 
 
+
 document.getElementById("cartCount").textContent =
 cart.reduce((t,i)=>t+i.qty,0);
 
 
 
-}
-
-
-
-
-
-
-
-// ================= WHATSAPP ORDER =================
-
+}// ================= WHATSAPP ORDER =================
 
 document.getElementById("order")
 .addEventListener("click",function(){
@@ -391,11 +439,16 @@ return;
 
 
 
-const customer=document.getElementById("customer").value;
+const customer =
+document.getElementById("customer").value;
 
-const phone=document.getElementById("phone").value;
 
-const address=document.getElementById("address").value;
+const phone =
+document.getElementById("phone").value;
+
+
+const address =
+document.getElementById("address").value;
 
 
 
@@ -409,7 +462,7 @@ return;
 
 
 
-let message=`🍗 Chicky Munch Order
+let message = `🍗 Chicky Munch Order
 
 Name: ${customer}
 
@@ -427,7 +480,7 @@ cart.forEach(item=>{
 
 
 message += 
-`• ${item.name} x${item.qty} = Rs ${item.price*item.qty}\n`;
+`• ${item.name} x${item.qty} = Rs ${item.price * item.qty}\n`;
 
 
 });
@@ -449,11 +502,14 @@ window.open(
 );
 
 
+
 });
 
 
 
 
+
+// ================= TOTAL =================
 
 function sumCart(){
 
@@ -467,30 +523,36 @@ return cart.reduce(
 
 
 
-
 // ================= CART BUTTON =================
 
 
 function toggleCart(){
 
 
-const cartBox=document.getElementById("cart");
+const cartBox =
+document.getElementById("cart");
+
 
 
 if(cartBox.style.display==="block"){
 
+
 cartBox.style.display="none";
+
 
 }
 
 else{
 
+
 cartBox.style.display="block";
 
+
 }
 
 
 }
+
 
 
 
@@ -503,11 +565,12 @@ toggleCart();
 
 
 
+
 document.getElementById("cart").style.display="none";
 
 
 
 
-// PAGE LOAD
+// ================= PAGE LOAD =================
 
 renderProducts();
