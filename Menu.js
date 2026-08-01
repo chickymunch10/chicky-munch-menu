@@ -34,6 +34,7 @@ category:"Burgers"
 
 
 /* ================= CHICKY LOCAL PIZZA ================= */
+/* ================= CHICKY LOCAL PIZZA ================= */
 
 {
 name:"BBQ Chicken Pizza",
@@ -88,6 +89,7 @@ Medium:1150,
 Large:1350,
 Party:2200
 }
+},
   
 },/* ================= CHICKY TREAT PIZZA ================= */
 
