@@ -4,6 +4,9 @@ const total = document.getElementById("total");
 
 let cart = [];
 
+
+// ================= SHOW ALL PRODUCTS =================
+
 function renderProducts() {
 
     products.innerHTML = "";
@@ -23,7 +26,7 @@ function renderProducts() {
             <p class="price">Rs ${item.price}</p>
 
             <button onclick="addToCart(${index})">
-                Add To Cart
+            Add To Cart
             </button>
 
         </div>
@@ -33,120 +36,241 @@ function renderProducts() {
 
 }
 
+
+
+// ================= CATEGORY FILTER =================
+
+function showCategory(category){
+
+    products.innerHTML = "";
+
+
+    if(category === "All"){
+
+        renderProducts();
+        return;
+
+    }
+
+
+    menu.forEach((item,index)=>{
+
+
+        if(item.category === category){
+
+
+            products.innerHTML += `
+
+            <div class="card">
+
+                <h3>${item.name}</h3>
+
+                <p class="price">
+                Rs ${item.price}
+                </p>
+
+
+                <button onclick="addToCart(${index})">
+                Add To Cart
+                </button>
+
+
+            </div>
+
+            `;
+
+
+        }
+
+
+    });
+
+
+}
+
+
+
+
+// ================= CART =================
+
+
 function addToCart(index) {
+
 
     const product = menu[index];
 
-    const exist = cart.find(item => item.name === product.name);
 
-    if (exist) {
+    const exist = cart.find(
+    item => item.name === product.name
+    );
+
+
+    if(exist){
 
         exist.qty++;
 
-    } else {
+    }
+    else{
 
         cart.push({
+
             ...product,
-            qty: 1
+
+            qty:1
+
         });
 
     }
 
+
     renderCart();
+
     renderProducts();
+
 
 }
 
 
-function plusItem(index) {
+
+
+function plusItem(index){
+
 
     cart[index].qty++;
 
+
     renderCart();
+
     renderProducts();
+
 
 }
 
 
-function minusItem(index) {
+
+function minusItem(index){
+
 
     cart[index].qty--;
 
-    if (cart[index].qty <= 0) {
 
-        cart.splice(index, 1);
+    if(cart[index].qty <= 0){
+
+        cart.splice(index,1);
 
     }
 
+
     renderCart();
+
     renderProducts();
+
 
 }
 
-function renderCart() {
+
+
+
+// ================= CART DISPLAY =================
+
+
+function renderCart(){
+
 
     cartItems.innerHTML = "";
+
 
     let sum = 0;
 
 
-    cart.forEach((item, index) => {
+    cart.forEach((item,index)=>{
+
 
         sum += item.price * item.qty;
 
 
+
         cartItems.innerHTML += `
-        <div style="display:flex;justify-content:space-between;align-items:center;background:#2b2b2b;padding:10px;border-radius:10px;margin-bottom:10px;">
+
+        <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        background:#2b2b2b;
+        padding:10px;
+        border-radius:10px;
+        margin-bottom:10px;">
+
 
             <div>
-                <b>${item.name}</b><br>
-                Rs ${item.price}
-            </div>
 
+            <b>${item.name}</b><br>
 
-            <div style="display:flex;align-items:center;gap:8px;">
-
-                <button onclick="minusItem(${index})">
-                ➖
-                </button>
-
-
-                <span>
-                ${item.qty}
-                </span>
-
-
-                <button onclick="plusItem(${index})">
-                ➕
-                </button>
+            Rs ${item.price}
 
             </div>
+
+
+
+            <div>
+
+
+            <button onclick="minusItem(${index})">
+            ➖
+            </button>
+
+
+            <span>
+            ${item.qty}
+            </span>
+
+
+            <button onclick="plusItem(${index})">
+            ➕
+            </button>
+
+
+            </div>
+
 
         </div>
+
         `;
 
+
     });
+
 
 
     total.textContent = sum;
 
 
+
     document.getElementById("cartCount").textContent =
-    cart.reduce((t, i) => t + i.qty, 0);
+    cart.reduce((t,i)=>t+i.qty,0);
+
 
 
 }
 
-document.getElementById("order").addEventListener("click", function () {
 
 
-    if (cart.length === 0) {
+
+// ================= WHATSAPP ORDER =================
+
+
+document.getElementById("order")
+.addEventListener("click",function(){
+
+
+    if(cart.length === 0){
 
         alert("Please add at least one item.");
 
         return;
 
     }
+
 
 
     const customer =
@@ -175,30 +299,40 @@ document.getElementById("order").addEventListener("click", function () {
     let message = `🍗 Chicky Munch Order
 
 Name: ${customer}
+
 Phone: ${phone}
+
 Address: ${address}
+
 
 Items:
 `;
 
 
 
-    cart.forEach((item)=>{
+    cart.forEach(item=>{
+
 
         message +=
         `• ${item.name} x${item.qty} = Rs ${item.price * item.qty}\n`;
+
 
     });
 
 
 
-    message += `\nTotal: Rs ${sumCart()}`;
+    message += `
+
+Total: Rs ${sumCart()}`;
 
 
 
     window.open(
+
     `https://wa.me/923331917184?text=${encodeURIComponent(message)}`,
+
     "_blank"
+
     );
 
 
@@ -206,48 +340,59 @@ Items:
 
 
 
+
+
 function sumCart(){
 
-    return cart.reduce(
-    (sum,item)=>sum + (item.price * item.qty),
-    0
-    );
+return cart.reduce(
+(sum,item)=>sum+(item.price*item.qty),
+0
+);
 
 }
 
+
+
+
+// ================= CART BUTTON =================
+
+
 function toggleCart(){
 
-    const cartBox =
-    document.getElementById("cart");
+
+const cartBox=document.getElementById("cart");
 
 
-    if(cartBox.style.display === "block"){
+if(cartBox.style.display==="block"){
 
-        cartBox.style.display = "none";
+cartBox.style.display="none";
 
-    }else{
+}
 
-        cartBox.style.display = "block";
+else{
 
-    }
+cartBox.style.display="block";
+
+}
+
 
 }
 
 
 
 document.getElementById("cartBtn")
-.addEventListener("click", function(){
+.addEventListener("click",function(){
 
-    toggleCart();
+toggleCart();
 
 });
 
 
 
-document.getElementById("cart").style.display = "none";
+document.getElementById("cart").style.display="none";
 
 
 
-// ===== Page Load =====
+// ================= PAGE LOAD =================
 
 renderProducts();
