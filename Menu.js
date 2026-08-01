@@ -158,7 +158,121 @@ name:"Hot N Spicy Party",
 price:2200,
 category:"Chicky Local Pizza"
 },
+  
+/* ================= CHICKY TREAT PIZZA ================= */
 
+{
+name:"Crown Crust Medium",
+price:1350,
+category:"Chicky Treat Pizza"
+},
+
+{
+name:"Crown Crust Large",
+price:1650,
+category:"Chicky Treat Pizza"
+},
+
+{
+name:"Crown Crust Party",
+price:2500,
+category:"Chicky Treat Pizza"
+},
+
+
+{
+name:"Stuff Crust Medium",
+price:1350,
+category:"Chicky Treat Pizza"
+},
+
+{
+name:"Stuff Crust Large",
+price:1650,
+category:"Chicky Treat Pizza"
+},
+
+{
+name:"Stuff Crust Party",
+price:2500,
+category:"Chicky Treat Pizza"
+},
+
+
+{
+name:"Chicky Extreme Medium",
+price:1350,
+category:"Chicky Treat Pizza"
+},
+
+{
+name:"Chicky Extreme Large",
+price:1650,
+category:"Chicky Treat Pizza"
+},
+
+{
+name:"Chicky Extreme Party",
+price:2500,
+category:"Chicky Treat Pizza"
+},
+
+
+{
+name:"Munch Special Medium",
+price:1350,
+category:"Chicky Treat Pizza"
+},
+
+{
+name:"Munch Special Large",
+price:1650,
+category:"Chicky Treat Pizza"
+},
+
+{
+name:"Munch Special Party",
+price:2500,
+category:"Chicky Treat Pizza"
+},
+
+
+{
+name:"Behari Kebab Medium",
+price:1350,
+category:"Chicky Treat Pizza"
+},
+
+{
+name:"Behari Kebab Large",
+price:1650,
+category:"Chicky Treat Pizza"
+},
+
+{
+name:"Behari Kebab Party",
+price:2500,
+category:"Chicky Treat Pizza"
+},
+
+
+{
+name:"Malai Boti Medium",
+price:1350,
+category:"Chicky Treat Pizza"
+},
+
+{
+name:"Malai Boti Large",
+price:1650,
+category:"Chicky Treat Pizza"
+},
+
+{
+name:"Malai Boti Party",
+price:2500,
+category:"Chicky Treat Pizza"
+},
 
 /* ================= PASTA ================= */
 
