@@ -32,8 +32,6 @@ price:695,
 category:"Burgers"
 },
 
-
-/* ================= CHICKY LOCAL PIZZA ================= */
 /* ================= CHICKY LOCAL PIZZA ================= */
 
 {
