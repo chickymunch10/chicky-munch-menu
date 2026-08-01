@@ -36,272 +36,143 @@ category:"Burgers"
 /* ================= CHICKY LOCAL PIZZA ================= */
 
 {
-name:"BBQ Chicken Small",
-price:500,
-category:"Chicky Local Pizza"
+name:"BBQ Chicken Pizza",
+category:"Chicky Local Pizza",
+sizes:{
+Small:500,
+Medium:1150,
+Large:1350,
+Party:2200
+}
 },
 
 {
-name:"BBQ Chicken Medium",
-price:1150,
-category:"Chicky Local Pizza"
+name:"Chicken Fajita Pizza",
+category:"Chicky Local Pizza",
+sizes:{
+Small:500,
+Medium:1150,
+Large:1350,
+Party:2200
+}
 },
 
 {
-name:"BBQ Chicken Large",
-price:1350,
-category:"Chicky Local Pizza"
+name:"Chicken Tikka Pizza",
+category:"Chicky Local Pizza",
+sizes:{
+Small:500,
+Medium:1150,
+Large:1350,
+Party:2200
+}
 },
 
 {
-name:"BBQ Chicken Party",
-price:2200,
-category:"Chicky Local Pizza"
-},
-
-
-{
-name:"Chicken Fajita Small",
-price:500,
-category:"Chicky Local Pizza"
-},
-
-{
-name:"Chicken Fajita Medium",
-price:1150,
-category:"Chicky Local Pizza"
+name:"Chicken Tandoori Pizza",
+category:"Chicky Local Pizza",
+sizes:{
+Small:500,
+Medium:1150,
+Large:1350,
+Party:2200
+}
 },
 
 {
-name:"Chicken Fajita Large",
-price:1350,
-category:"Chicky Local Pizza"
-},
-
-{
-name:"Chicken Fajita Party",
-price:2200,
-category:"Chicky Local Pizza"
-},
-
-
-{
-name:"Chicken Tikka Small",
-price:500,
-category:"Chicky Local Pizza"
-},
-
-{
-name:"Chicken Tikka Medium",
-price:1150,
-category:"Chicky Local Pizza"
-},
-
-{
-name:"Chicken Tikka Large",
-price:1350,
-category:"Chicky Local Pizza"
-},
-
-{
-name:"Chicken Tikka Party",
-price:2200,
-category:"Chicky Local Pizza"
-},
-
-
-{
-name:"Chicken Tandoori Small",
-price:500,
-category:"Chicky Local Pizza"
-},
-
-{
-name:"Chicken Tandoori Medium",
-price:1150,
-category:"Chicky Local Pizza"
-},
-
-{
-name:"Chicken Tandoori Large",
-price:1350,
-category:"Chicky Local Pizza"
-},
-
-{
-name:"Chicken Tandoori Party",
-price:2200,
-category:"Chicky Local Pizza"
-},
-
-
-{
-name:"Hot N Spicy Small",
-price:500,
-category:"Chicky Local Pizza"
-},
-
-{
-name:"Hot N Spicy Medium",
-price:1150,
-category:"Chicky Local Pizza"
-},
-
-{
-name:"Hot N Spicy Large",
-price:1350,
-category:"Chicky Local Pizza"
-},
-
-{
-name:"Hot N Spicy Party",
-price:2200,
-category:"Chicky Local Pizza"
-},
+name:"Hot N Spicy Pizza",
+category:"Chicky Local Pizza",
+sizes:{
+Small:500,
+Medium:1150,
+Large:1350,
+Party:2200
+}
   
-/* ================= CHICKY TREAT PIZZA ================= */
+},/* ================= CHICKY TREAT PIZZA ================= */
 
 {
-name:"Crown Crust Medium",
-price:1350,
-category:"Chicky Treat Pizza"
+name:"Crown Crust Pizza",
+category:"Chicky Treat Pizza",
+sizes:{
+Medium:1350,
+Large:1650,
+Party:2500
+}
 },
 
 {
-name:"Crown Crust Large",
-price:1650,
-category:"Chicky Treat Pizza"
+name:"Stuff Crust Pizza",
+category:"Chicky Treat Pizza",
+sizes:{
+Medium:1350,
+Large:1650,
+Party:2500
+}
 },
 
 {
-name:"Crown Crust Party",
-price:2500,
-category:"Chicky Treat Pizza"
-},
-
-
-{
-name:"Stuff Crust Medium",
-price:1350,
-category:"Chicky Treat Pizza"
+name:"Chicky Extreme Pizza",
+category:"Chicky Treat Pizza",
+sizes:{
+Medium:1350,
+Large:1650,
+Party:2500
+}
 },
 
 {
-name:"Stuff Crust Large",
-price:1650,
-category:"Chicky Treat Pizza"
+name:"Munch Special Pizza",
+category:"Chicky Treat Pizza",
+sizes:{
+Medium:1350,
+Large:1650,
+Party:2500
+}
 },
 
 {
-name:"Stuff Crust Party",
-price:2500,
-category:"Chicky Treat Pizza"
-},
-
-
-{
-name:"Chicky Extreme Medium",
-price:1350,
-category:"Chicky Treat Pizza"
+name:"Behari Kebab Pizza",
+category:"Chicky Treat Pizza",
+sizes:{
+Medium:1350,
+Large:1650,
+Party:2500
+}
 },
 
 {
-name:"Chicky Extreme Large",
-price:1650,
-category:"Chicky Treat Pizza"
+name:"Malai Boti Pizza",
+category:"Chicky Treat Pizza",
+sizes:{
+Medium:1350,
+Large:1650,
+Party:2500
+}
 },
 
-{
-name:"Chicky Extreme Party",
-price:2500,
-category:"Chicky Treat Pizza"
-},
-
-
-{
-name:"Munch Special Medium",
-price:1350,
-category:"Chicky Treat Pizza"
-},
-
-{
-name:"Munch Special Large",
-price:1650,
-category:"Chicky Treat Pizza"
-},
-
-{
-name:"Munch Special Party",
-price:2500,
-category:"Chicky Treat Pizza"
-},
-
-
-{
-name:"Behari Kebab Medium",
-price:1350,
-category:"Chicky Treat Pizza"
-},
-
-{
-name:"Behari Kebab Large",
-price:1650,
-category:"Chicky Treat Pizza"
-},
-
-{
-name:"Behari Kebab Party",
-price:2500,
-category:"Chicky Treat Pizza"
-},
-
-
-{
-name:"Malai Boti Medium",
-price:1350,
-category:"Chicky Treat Pizza"
-},
-
-{
-name:"Malai Boti Large",
-price:1650,
-category:"Chicky Treat Pizza"
-},
-
-{
-name:"Malai Boti Party",
-price:2500,
-category:"Chicky Treat Pizza"
-},
 
 /* ================= PASTA ================= */
 
 {
-name:"Alfredo Pasta Small",
-price:495,
-category:"Pasta"
+name:"Alfredo Pasta",
+category:"Pasta",
+sizes:{
+Small:495,
+Large:750
+}
 },
 
 {
-name:"Alfredo Pasta Large",
-price:750,
-category:"Pasta"
+name:"Crunchy Pasta",
+category:"Pasta",
+sizes:{
+Small:495,
+Large:750
+}
 },
 
-{
-name:"Crunchy Pasta Small",
-price:495,
-category:"Pasta"
-},
-
-{
-name:"Crunchy Pasta Large",
-price:750,
-category:"Pasta"
-},
-
-
-/* ================= PLATTERS ================= */
+  /* ================= PLATTERS ================= */
 
 {
 name:"Special Roasted Platter",
@@ -314,6 +185,7 @@ name:"Classic Roll Platter",
 price:1050,
 category:"Platters"
 },
+
 
 
 /* ================= DEALS ================= */
@@ -341,6 +213,8 @@ name:"Deal 4 - 5 Zinger Fries & 1 Ltr Drink",
 price:2050,
 category:"Deals"
 },
+
+
 {
 name:"Pizza Deal - Small Pizza + 345ml Drink",
 price:550,
@@ -359,18 +233,17 @@ price:1450,
 category:"Deals"
 },
 
+
+
 /* ================= ADD ONS ================= */
 
 {
-name:"Loaded Fries Small",
-price:495,
-category:"Add Ons"
-},
-
-{
-name:"Loaded Fries Large",
-price:750,
-category:"Add Ons"
+name:"Loaded Fries",
+category:"Add Ons",
+sizes:{
+Small:495,
+Large:750
+}
 },
 
 {
@@ -386,15 +259,12 @@ category:"Add Ons"
 },
 
 {
-name:"Fries Small",
-price:150,
-category:"Add Ons"
-},
-
-{
-name:"Fries Large",
-price:250,
-category:"Add Ons"
+name:"Fries",
+category:"Add Ons",
+sizes:{
+Small:150,
+Large:250
+}
 },
 
 {
@@ -409,19 +279,15 @@ price:350,
 category:"Add Ons"
 },
 
-
-/* ================= WRAPS & ROLLS ================= */
-
-{
-name:"Zinger Strip Wrap Small",
-price:450,
-category:"Wraps & Rolls"
-},
+  /* ================= WRAPS & ROLLS ================= */
 
 {
-name:"Zinger Strip Wrap Large",
-price:650,
-category:"Wraps & Rolls"
+name:"Zinger Strip Wrap",
+category:"Wraps & Rolls",
+sizes:{
+Small:450,
+Large:650
+}
 },
 
 {
@@ -431,15 +297,12 @@ category:"Wraps & Rolls"
 },
 
 {
-name:"Chicken Wrap Small",
-price:450,
-category:"Wraps & Rolls"
-},
-
-{
-name:"Chicken Wrap Large",
-price:650,
-category:"Wraps & Rolls"
+name:"Chicken Wrap",
+category:"Wraps & Rolls",
+sizes:{
+Small:450,
+Large:650
+}
 },
 
 {
@@ -473,6 +336,7 @@ category:"Wraps & Rolls"
 },
 
 
+
 /* ================= STARTER + SANDWICH ================= */
 
 {
@@ -504,6 +368,7 @@ name:"Euro Sandwich",
 price:750,
 category:"Special Starter + Sandwich"
 },
+
 
 
 /* ================= DRINKS ================= */
