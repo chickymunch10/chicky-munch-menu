@@ -227,7 +227,23 @@ name:"Deal 4 - 5 Zinger Fries & 1 Ltr Drink",
 price:2050,
 category:"Deals"
 },
+{
+name:"Pizza Deal - Small Pizza + 345ml Drink",
+price:550,
+category:"Deals"
+},
 
+{
+name:"Pizza Deal - Medium Pizza + 500ml Drink",
+price:1250,
+category:"Deals"
+},
+
+{
+name:"Pizza Deal - Large Pizza + 1 Liter Drink",
+price:1450,
+category:"Deals"
+},
 
 /* ================= ADD ONS ================= */
 
