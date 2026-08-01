@@ -54,18 +54,56 @@ ${priceText}
 </p>
 
 
-<button onclick="selectProduct(${index})">
-Add To Cart
-</button>
+function selectProduct(index){
+
+const product = menu[index];
 
 
-</div>
+if(product.sizes){
+
+let sizes = Object.keys(product.sizes);
+
+
+let popup = `
+${product.name}
+
+Select Size:
 
 `;
 
+sizes.forEach((size,i)=>{
+popup += `${i+1}. ${size} - Rs ${product.sizes[size]}\n`;
+});
+
+
+let choice = prompt(popup);
+
+
+
+let selectedSize = sizes[choice-1];
+
+
+if(!selectedSize){
+return;
 }
 
 
+addSizeToCart(
+product,
+selectedSize,
+product.sizes[selectedSize]
+);
+
+
+}
+
+else{
+
+addNormalToCart(product);
+
+}
+
+}
 
 
 // ================= CATEGORY FILTER =================
