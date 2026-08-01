@@ -30,6 +30,9 @@ function renderProducts() {
         `;
 
     });
+
+}
+
 function addToCart(index) {
 
     const product = menu[index];
@@ -37,17 +40,23 @@ function addToCart(index) {
     const exist = cart.find(item => item.name === product.name);
 
     if (exist) {
+
         exist.qty++;
+
     } else {
+
         cart.push({
             ...product,
             qty: 1
         });
+
     }
 
     renderCart();
     renderProducts();
+
 }
+
 
 function plusItem(index) {
 
@@ -58,27 +67,33 @@ function plusItem(index) {
 
 }
 
+
 function minusItem(index) {
 
     cart[index].qty--;
 
     if (cart[index].qty <= 0) {
+
         cart.splice(index, 1);
+
     }
 
     renderCart();
     renderProducts();
 
 }
+
 function renderCart() {
 
     cartItems.innerHTML = "";
 
     let sum = 0;
 
+
     cart.forEach((item, index) => {
 
         sum += item.price * item.qty;
+
 
         cartItems.innerHTML += `
         <div style="display:flex;justify-content:space-between;align-items:center;background:#2b2b2b;padding:10px;border-radius:10px;margin-bottom:10px;">
@@ -88,13 +103,22 @@ function renderCart() {
                 Rs ${item.price}
             </div>
 
+
             <div style="display:flex;align-items:center;gap:8px;">
 
-                <button onclick="minusItem(${index})">➖</button>
+                <button onclick="minusItem(${index})">
+                ➖
+                </button>
 
-                <span>${item.qty}</span>
 
-                <button onclick="plusItem(${index})">➕</button>
+                <span>
+                ${item.qty}
+                </span>
+
+
+                <button onclick="plusItem(${index})">
+                ➕
+                </button>
 
             </div>
 
@@ -103,21 +127,50 @@ function renderCart() {
 
     });
 
+
     total.textContent = sum;
 
-    document.getElementById("cartCount").textContent = cart.reduce((t, i) => t + i.qty, 0);
+
+    document.getElementById("cartCount").textContent =
+    cart.reduce((t, i) => t + i.qty, 0);
+
 
 }
-    document.getElementById("order").addEventListener("click", function () {
+
+document.getElementById("order").addEventListener("click", function () {
+
 
     if (cart.length === 0) {
+
         alert("Please add at least one item.");
+
         return;
+
     }
 
-    const customer = document.getElementById("customer").value;
-    const phone = document.getElementById("phone").value;
-    const address = document.getElementById("address").value;
+
+    const customer =
+    document.getElementById("customer").value;
+
+
+    const phone =
+    document.getElementById("phone").value;
+
+
+    const address =
+    document.getElementById("address").value;
+
+
+
+    if(!customer || !phone || !address){
+
+        alert("Please fill all details.");
+
+        return;
+
+    }
+
+
 
     let message = `🍗 Chicky Munch Order
 
@@ -128,44 +181,73 @@ Address: ${address}
 Items:
 `;
 
-    cart.forEach((item) => {
-        message += `• ${item.name} x${item.qty} = Rs ${item.price * item.qty}\n`;
+
+
+    cart.forEach((item)=>{
+
+        message +=
+        `• ${item.name} x${item.qty} = Rs ${item.price * item.qty}\n`;
+
     });
+
+
 
     message += `\nTotal: Rs ${sumCart()}`;
 
+
+
     window.open(
-        `https://wa.me/923331917184?text=${encodeURIComponent(message)}`,
-        "_blank"
+    `https://wa.me/923331917184?text=${encodeURIComponent(message)}`,
+    "_blank"
     );
+
 
 });
 
-function sumCart() {
-    return cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+
+function sumCart(){
+
+    return cart.reduce(
+    (sum,item)=>sum + (item.price * item.qty),
+    0
+    );
+
 }
+
 function toggleCart(){
 
-    const cartBox = document.getElementById("cart");
+    const cartBox =
+    document.getElementById("cart");
+
 
     if(cartBox.style.display === "block"){
+
         cartBox.style.display = "none";
+
     }else{
+
         cartBox.style.display = "block";
+
     }
 
 }
 
 
-document.getElementById("cartBtn").addEventListener("click", function(){
+
+document.getElementById("cartBtn")
+.addEventListener("click", function(){
 
     toggleCart();
 
 });
 
 
+
 document.getElementById("cart").style.display = "none";
 
 
-// Page Load
+
+// ===== Page Load =====
+
 renderProducts();
